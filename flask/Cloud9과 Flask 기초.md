@@ -145,3 +145,30 @@
    $ pip install Flask #Flask 설치
    $ FLASK_APP=파일명.py flask run --host=$IP --port=$PORT #서버 띄우기
    ```
+
+
+
+### 마무리
+
+- 토큰값이 자꾸 날아가는 것을 방지해 보자!
+
+  1. bash 창에 입력
+
+     ```bash
+     $ c9 ~/.bashrc
+     ```
+
+  2. 새로 뜬 python 창의 맨 아래에 토큰값 입력.
+
+     ```python
+     export TELE_TOKEN=<TOKEN>
+     ```
+
+  3. 저장 후 다시 bash 창에 입력
+
+     ```bash
+     $ exec $SHELL
+     $ echo $TELE_TOKEN
+     ```
+
+  4. 끝! 토큰이 날아가지 않게 되었씁니다!
