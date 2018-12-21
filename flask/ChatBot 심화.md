@@ -156,6 +156,28 @@
                 text = f"추첨일자 : {date}\n회차 : {turn}\n\n당첨 번호 : {week}\n보너스 번호 : {bonus}\n"
     ```
 
+  - 실시간 검색어!
+
+    ```python
+    if "실시간 검색어" in text:
+            silgum_url = "https://www.daum.net"
+            silgum_res = requests.get(silgum_url).text
+            
+            soup = BeautifulSoup(silgum_res, 'html.parser')
+            pick = soup.select('#mArticle > div.cmain_tmp > div.section_media > div.hotissue_builtin.hide > div.realtime_part > ol > li > div > div:nth-of-type(1) > span.txt_issue > a')
+            
+            now = datetime.now()
+            hour = now.hour
+            minute = now.minute
+            second = now.second
+            
+            text = f"현재 시각 : {hour}시 {minute}분 {second}초\n다음 실시간 검색어는\n"
+            i = 1
+            for p in pick:
+                text += (f"\n{i}. " + p.text)
+                i = i + 1
+    ```
+
 - 여러 기능을 한꺼번에 넣고 싶을 땐
 
   - 이때 각 기능들은 덮어 씌워지면 안되므로, **if, elif, elif, ... , else** 로 넣어주도록 하자.
