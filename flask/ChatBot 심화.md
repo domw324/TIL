@@ -126,7 +126,7 @@
 
   ~ 에 **if, elif, else**를 통해 응답문을 작성 할 수 있다.
 
-  - "오늘 점심 메뉴 뭐야?" 라는 응답에 "점심" 키워드를 감지하고 대답하고 싶다면?
+  - "오늘 점심 메뉴 뭐야?" 라는 응답에 "메뉴" 키워드를 감지하고 대답하고 싶다면?
 
     ```python
     if "메뉴" in text:
@@ -156,7 +156,7 @@
                 text = f"추첨일자 : {date}\n회차 : {turn}\n\n당첨 번호 : {week}\n보너스 번호 : {bonus}\n"
     ```
 
-  - 실시간 검색어!
+  - 웹크롤링을 이용해 실시간 검색어를 
 
     ```python
     if "실시간 검색어" in text:
@@ -239,7 +239,7 @@
   # - - - - NAVERapi를 사용하기 위한 변수 - - - - 
   naver_client_id = os.getenv('NAVER_ID')
   naver_client_secret = os.getenv('NAVER_SECRET')
-   # - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - 
   ```
 
   편의상 실습 코드에 주석을 넣어 설명한다.
@@ -286,7 +286,7 @@
               text = trans_dict["message"]["result"]["translatedText"] # text 설정
   
           elif img:
-              text = "사용자가 이미지를 넣었어요"
+              # text = "사용자가 이미지를 넣었어요"
               # 텔레그램에게서 사진 정보 가져오기
               file_id = tele_dict["message"]["photo"][-1]["file_id"]
               file_path = requests.get(f"{api_url}/bot{token}/getFile?file_id={file_id}").json()["result"]["file_path"]
@@ -318,7 +318,7 @@
 
 ### ChatBot 배포하기
 
-지금까지 만들었던 Chatbot을 죽지않는 서버에 저장하고 배포해보자. 다음 아래
+지금까지 만들었던 Chatbot을 죽지않는 서버에 저장하고 배포해보자. 다음 아래 과정이 매우 복잡하니 잘 따라가보자.
 
 1. 가장 먼저 파일을 git에 올린다! bash창에 입력하자.
 
@@ -334,7 +334,7 @@
      $ git init
      ```
 
-   - 여기서 status는 현재 상태를 확인하는 건데, **"nothing to commit, working tree clean"**이면 잘 된 것.
+   - 여기서 status는 현재 상태를 확인하는 건데, **nothing to commit, working tree clean** 메시지가 나오면 잘 된 것.
 
 2. 'heroku'를 검색해서 Free Version으로 가입한다. 이메일 인증도 꼭 하자. (heroku 창은 닫지 말자)
 
@@ -397,7 +397,7 @@
    $ git status
    ```
 
-    **"nothing to commit, working tree clean"**라는 메세지가 뜨면 잘 된 것이니 다음으로 넘어가자.
+    **nothing to commit, working tree clean** 라는 메세지가 뜨면 잘 된 것이니 다음으로 넘어가자.
 
 6. 역시 bash창에 입력하자
 
@@ -406,7 +406,7 @@
    ```
 
    여기서 "just-4-dollar-bot"은 마음대로 설정할 수 있는 이름이다.
-   **"Creating ⬢ just-4-dollar-bot... done"** 이라는 메세지가 뜨면 잘 된 것.
+   **Creating ⬢ just-4-dollar-bot... done** 이라는 메세지가 뜨면 잘 된 것.
 
 7. 자, 이제 또 bash 창에 입력해보자.
 
@@ -414,7 +414,7 @@
    $ git push heroku master
    ```
 
-   입력을 하면 막 이것저것 설치할 것. 시간이 좀 걸린다. 하단부에 **"Verifying deploy... done."**라는 메세지가 출력되면 성공이다.
+   입력을 하면 막 이것저것 설치할 것. 시간이 좀 걸린다. 하단부에 **Verifying deploy... done.** 라는 메세지가 출력되면 성공이다.
 
 8. 끝난줄 알았겠지만, 아직 많이 남았다..
    Telegram에 다시 들어가서,, BotFather에게 **/newbot** 을 보내자. 그러면 새로운 **token**을 준다!
@@ -432,7 +432,7 @@
    ```
 
 10. 다시 heroku을 띄우자. 그리고 방금 만든 저장소로 이동후 **Settings**로 들어간다.
-    Config Vars > **Reveal Config Vars **를 누른다.
+    Config Vars > **Reveal Config Vars**를 누른다.
     여기에 KEY와 VALUE를 입력하고 Add를 누른다. (3개를 입력한다.)
 
     ```
